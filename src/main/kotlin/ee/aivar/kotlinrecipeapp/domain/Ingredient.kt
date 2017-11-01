@@ -4,17 +4,14 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity
-class Ingredient (
+open class Ingredient : BaseEntity() {
 
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-        val id: Long = -1,
+    var description: String? = null
+    var amount: BigDecimal? = null
 
-        val description: String,
-        val amount: BigDecimal,
+    @ManyToOne
+    var recipe: Recipe? = null
 
-        @ManyToOne
-        val recipe: Recipe,
-
-        @OneToOne(fetch = FetchType.EAGER)
-        val uom: UnitOfMeasure
-)
+    @OneToOne(fetch = FetchType.EAGER)
+    var uom: UnitOfMeasure? = null
+}

@@ -3,13 +3,11 @@ package ee.aivar.kotlinrecipeapp.domain
 import javax.persistence.*
 
 @Entity
-class Category (
+open class Category : BaseEntity() {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = -1,
-    val description: String,
+    var description: String? = null
 
     @ManyToMany(mappedBy = "categories")
-    val recipes: Set<Recipe>
+    var recipes: Set<Recipe> = HashSet()
 
-)
+}

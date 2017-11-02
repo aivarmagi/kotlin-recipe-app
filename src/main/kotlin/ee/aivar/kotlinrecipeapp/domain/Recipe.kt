@@ -3,7 +3,7 @@ package ee.aivar.kotlinrecipeapp.domain
 import javax.persistence.*
 
 @Entity
-open class Recipe : BaseEntity() {
+class Recipe : BaseEntity() {
 
     var description: String? = null
     var prepTime: Int? = null

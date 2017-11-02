@@ -5,8 +5,6 @@ buildscript {
     extra["kotlinVersion"] = "1.1.51"
     extra["springBootVersion"] = "2.0.0.M5"
 
-    val springBootVersion: String by extra
-
     repositories {
         mavenCentral()
         maven("https://repo.spring.io/milestone")
@@ -30,6 +28,8 @@ plugins {
 
 apply {
     plugin("org.springframework.boot")
+    plugin("kotlin-spring")
+    plugin("kotlin-noarg")
     plugin("kotlin-jpa")
 }
 

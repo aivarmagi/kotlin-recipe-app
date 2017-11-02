@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 @Entity
-open class Ingredient : BaseEntity() {
+class Ingredient : BaseEntity() {
 
     var description: String? = null
     var amount: BigDecimal? = null

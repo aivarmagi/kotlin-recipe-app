@@ -11,6 +11,8 @@ class Recipe : BaseEntity() {
     var servings: Int? = null
     var source: String? = null
     var url: String? = null
+
+    @Lob
     var directions: String? = null
 
     @OneToMany(cascade = arrayOf(CascadeType.ALL), mappedBy = "recipe")

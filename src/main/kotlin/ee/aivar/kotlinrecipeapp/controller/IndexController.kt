@@ -1,24 +1,17 @@
 package ee.aivar.kotlinrecipeapp.controller
 
-import ee.aivar.kotlinrecipeapp.domain.Category
-import ee.aivar.kotlinrecipeapp.domain.UnitOfMeasure
-import ee.aivar.kotlinrecipeapp.repository.CategoryRepository
-import ee.aivar.kotlinrecipeapp.repository.UnitOfMeasureRepository
+import ee.aivar.kotlinrecipeapp.service.RecipeService
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
-import java.util.*
 
 @Controller
-class IndexController (val categoryRepository: CategoryRepository,
-                       val unitOfMeasureRepository: UnitOfMeasureRepository) {
+class IndexController (val recipeService: RecipeService) {
 
     @RequestMapping("", "/", "/index")
-    fun getIndexPage() : String {
-        val categoryOptional: Optional<Category> = categoryRepository.findByDescription("American")
-        val unitOfMeasureOptional: Optional<UnitOfMeasure> = unitOfMeasureRepository.findByDescription("Teaspoon")
+    fun getIndexPage(model : Model) : String {
 
-        System.out.println("Cat id is: " + categoryOptional.get())
-        System.out.println("Uom id is: " + unitOfMeasureOptional.get())
+        model.addAttribute("recipes", recipeService.getRecipes())
 
         return "index"
     }

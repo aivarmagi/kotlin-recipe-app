@@ -18,7 +18,6 @@ class RecipeBootstrap (val categoryRepository: CategoryRepository,
     override fun onApplicationEvent(event: ContextRefreshedEvent) {
         recipeRepository.saveAll(getRecipes())
         println("Recipes bootstrapped to Context")
-        recipeRepository.findAll().iterator().forEach { println(it.toString()) }
     }
 
     fun getRecipes() : List<Recipe> {

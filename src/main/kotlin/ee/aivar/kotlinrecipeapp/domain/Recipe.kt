@@ -1,6 +1,7 @@
 package ee.aivar.kotlinrecipeapp.domain
 
 import javax.persistence.*
+import kotlin.jvm.Transient
 
 @Entity
 class Recipe : BaseEntity() {
@@ -26,6 +27,11 @@ class Recipe : BaseEntity() {
 
     @OneToOne(cascade = arrayOf(CascadeType.ALL))
     var notes: Notes? = null
+        //override default setter to set recipe/notes bidirectional relation
+        set(value)  {
+            field = value
+            field?.recipe = this
+        }
 
     @ManyToMany
     @JoinTable(name = "recipe_category",

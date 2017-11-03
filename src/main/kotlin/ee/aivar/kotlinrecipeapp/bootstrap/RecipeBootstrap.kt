@@ -107,19 +107,19 @@ class RecipeBootstrap (val categoryRepository: CategoryRepository,
                 "The simplest version of guacamole is just mashed avocados with salt. Don't let the lack of availability of other ingredients stop you from making guacamole.\n" +
                 "To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great."
         guacamoleRecipe.notes = guacamoleNotes
-        guacamoleNotes.recipe = guacamoleRecipe
 
-        guacamoleRecipe.ingredients.plus(Ingredient("ripe avocados", BigDecimal(2), eachUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("Kosher salt", BigDecimal(0.5), teaSpoonUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("of fresh lime juice or lemon juice", BigDecimal(1), tableSpoonUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("of minced red onion or thinly sliced green onion", BigDecimal(2), tableSpoonUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("serrano chiles, stems and seeds removed, minced", BigDecimal(2), eachUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("cilantro (leaves and tender stems), finely chopped", BigDecimal(2), tableSpoonUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("of freshly grated black pepper", BigDecimal(1), dashUom, guacamoleRecipe))
-        guacamoleRecipe.ingredients.plus(Ingredient("ripe tomato, seeds and pulp removed, chopped", BigDecimal(0.5), eachUom, guacamoleRecipe))
+        guacamoleRecipe.ingredients = hashSetOf(
+            Ingredient("ripe avocados", BigDecimal(2), eachUom, guacamoleRecipe),
+            Ingredient("Kosher salt", BigDecimal(0.5), teaSpoonUom, guacamoleRecipe),
+            Ingredient("of fresh lime juice or lemon juice", BigDecimal(1), tableSpoonUom, guacamoleRecipe),
+            Ingredient("of minced red onion or thinly sliced green onion", BigDecimal(2), tableSpoonUom, guacamoleRecipe),
+            Ingredient("serrano chiles, stems and seeds removed, minced", BigDecimal(2), eachUom, guacamoleRecipe),
+            Ingredient("cilantro (leaves and tender stems), finely chopped", BigDecimal(2), tableSpoonUom, guacamoleRecipe),
+            Ingredient("of freshly grated black pepper", BigDecimal(1), dashUom, guacamoleRecipe),
+            Ingredient("ripe tomato, seeds and pulp removed, chopped", BigDecimal(0.5), eachUom, guacamoleRecipe)
+        )
 
-        guacamoleRecipe.categories.plus(americanCategory)
-        guacamoleRecipe.categories.plus(mexicanCategory)
+        guacamoleRecipe.categories = hashSetOf(americanCategory, mexicanCategory)
 
         // // // // // // // // // // // // // // // // // //
         val tacoRecipe = Recipe()
@@ -145,33 +145,32 @@ class RecipeBootstrap (val categoryRepository: CategoryRepository,
         val tacoNotes = Notes()
         tacoNotes.recipeNotes = "Look for ancho chile powder with the Mexican ingredients at your grocery store, on buy it online. (If you can't find ancho chili powder, you replace the ancho chili, the oregano, and the cumin with 2 1/2 tablespoons regular chili powder, though the flavor won't be quite the same.)"
         tacoRecipe.notes = tacoNotes
-        tacoNotes.recipe = tacoRecipe
 
-        //for the chicken
-        tacoRecipe.ingredients.plus(Ingredient("ancho chili powder", BigDecimal(2), tableSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("dried oregano", BigDecimal(1), teaSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("dried cumin", BigDecimal(1), teaSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("sugar", BigDecimal(1), teaSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("salt", BigDecimal(0.5), teaSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("finely grated orange zest", BigDecimal(1), tableSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("fresh-squeezed orange juice", BigDecimal(3), tableSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("olive oil", BigDecimal(2), tableSpoonUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("skinless, boneless chicken thighs (1 1/4 pounds)", BigDecimal(6), eachUom, tacoRecipe))
+        tacoRecipe.ingredients = hashSetOf(
+            //for the chicken
+            Ingredient("ancho chili powder", BigDecimal(2), tableSpoonUom, tacoRecipe),
+            Ingredient("dried oregano", BigDecimal(1), teaSpoonUom, tacoRecipe),
+            Ingredient("dried cumin", BigDecimal(1), teaSpoonUom, tacoRecipe),
+            Ingredient("sugar", BigDecimal(1), teaSpoonUom, tacoRecipe),
+            Ingredient("salt", BigDecimal(0.5), teaSpoonUom, tacoRecipe),
+            Ingredient("finely grated orange zest", BigDecimal(1), tableSpoonUom, tacoRecipe),
+            Ingredient("fresh-squeezed orange juice", BigDecimal(3), tableSpoonUom, tacoRecipe),
+            Ingredient("olive oil", BigDecimal(2), tableSpoonUom, tacoRecipe),
+            Ingredient("skinless, boneless chicken thighs (1 1/4 pounds)", BigDecimal(6), eachUom, tacoRecipe),
 
-        //to serve
-        tacoRecipe.ingredients.plus(Ingredient("small corn tortillas", BigDecimal(8), eachUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("packed baby arugula (3 ounces)", BigDecimal(3), cupUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("medium ripe avocados, sliced", BigDecimal(2), eachUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("radishes, thinly sliced", BigDecimal(4), eachUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("cherry tomatoes, halved", BigDecimal(0.5), pintUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("red onion, thinly sliced", BigDecimal(0.25), eachUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("Roughly chopped cilantro", BigDecimal(1), eachUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("sour cream thinned with 1/4 cup milk", BigDecimal(0.5), cupUom, tacoRecipe))
-        tacoRecipe.ingredients.plus(Ingredient("lime, cut into wedges", BigDecimal(1), eachUom, tacoRecipe))
+            //to serve
+            Ingredient("small corn tortillas", BigDecimal(8), eachUom, tacoRecipe),
+            Ingredient("packed baby arugula (3 ounces)", BigDecimal(3), cupUom, tacoRecipe),
+            Ingredient("medium ripe avocados, sliced", BigDecimal(2), eachUom, tacoRecipe),
+            Ingredient("radishes, thinly sliced", BigDecimal(4), eachUom, tacoRecipe),
+            Ingredient("cherry tomatoes, halved", BigDecimal(0.5), pintUom, tacoRecipe),
+            Ingredient("red onion, thinly sliced", BigDecimal(0.25), eachUom, tacoRecipe),
+            Ingredient("Roughly chopped cilantro", BigDecimal(1), eachUom, tacoRecipe),
+            Ingredient("sour cream thinned with 1/4 cup milk", BigDecimal(0.5), cupUom, tacoRecipe),
+            Ingredient("lime, cut into wedges", BigDecimal(1), eachUom, tacoRecipe)
+        )
 
-        tacoRecipe.categories.plus(americanCategory)
-        tacoRecipe.categories.plus(mexicanCategory)
-
+        tacoRecipe.categories = hashSetOf(americanCategory, mexicanCategory)
 
         val recipes : List<Recipe> = arrayListOf(guacamoleRecipe, tacoRecipe)
 

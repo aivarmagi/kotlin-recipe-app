@@ -7,7 +7,6 @@ import org.junit.Before
 import org.junit.Test
 
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.mockito.Mockito.`when` as _when
 import org.mockito.MockitoAnnotations
@@ -30,13 +29,13 @@ class RecipeServiceImplTest {
     fun `should return all recipes`() {
 
         val recipe = Recipe()
-        val recipesData = setOf(recipe)
+        val recipesData = setOf(recipe, Recipe())
 
         _when(recipeService.getRecipes()).thenReturn(recipesData)
 
-        val recipes = recipeService.getRecipes();
+        val recipes = recipeService.getRecipes()
 
-        assertEquals(recipes.size, 1)
+        assertEquals(recipes.size, 2)
         verify(recipeRepository, times(1)).findAll()
     }
 }

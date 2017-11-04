@@ -1,14 +1,16 @@
 package ee.aivar.kotlinrecipeapp.controller
 
+import ee.aivar.kotlinrecipeapp.domain.Recipe
 import ee.aivar.kotlinrecipeapp.service.RecipeService
 import org.junit.Before
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.mockito.ArgumentMatchers.anySet
+import org.mockito.ArgumentCaptor
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mock
 import org.mockito.Mockito.*
+import org.mockito.Mockito.`when` as _when
 import org.mockito.MockitoAnnotations
 import org.springframework.ui.Model
 
@@ -22,6 +24,8 @@ class IndexControllerTest {
 
     lateinit var indexController : IndexController
 
+    inline fun <reified T : Any> argumentCaptor() = ArgumentCaptor.forClass(T::class.java)
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -32,11 +36,22 @@ class IndexControllerTest {
     @Test
     fun `should return index page string`() {
 
+        val recipe = Recipe()
+        recipe.description = "a description"
+        val recipes = setOf(recipe, Recipe())
+
+        _when(recipeService.getRecipes()).thenReturn(recipes)
+
+        val recipeArgumentCaptor = argumentCaptor<() -> Set<Recipe>>()
+
         val viewName = indexController.getIndexPage(model)
 
         assertEquals("index", viewName)
         verify(recipeService, times(1)).getRecipes()
-        verify(model, times(1)).addAttribute(eq("recipes"), anySet<String>())
+        verify(model, times(1)).addAttribute(eq("recipes"), recipeArgumentCaptor.capture())
+
+        val setInController = recipeArgumentCaptor.value as Set<*>
+        assertEquals(2, setInController.size)
     }
 
 }

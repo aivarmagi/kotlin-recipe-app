@@ -11,4 +11,15 @@ class RecipeServiceImpl(val recipeRepository: RecipeRepository) : RecipeService 
 
         return recipeRepository.findAll().reversed().toHashSet()
     }
+
+    override fun findById(id: Long): Recipe {
+
+        val recipeOptional = recipeRepository.findById(id)
+
+        if (!recipeOptional.isPresent) {
+            throw RuntimeException("Recipe Not Found!")
+        }
+
+        return recipeOptional.get()
+    }
 }

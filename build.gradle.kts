@@ -10,6 +10,9 @@ buildscript {
         maven("https://repo.spring.io/milestone")
     }
 
+    val kotlinVersion: String by extra
+    val springBootVersion: String by extra
+
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
@@ -59,6 +62,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    compile("org.webjars:bootstrap:3.3.7-1")
+    compile("org.webjars:jquery:3.2.1")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
